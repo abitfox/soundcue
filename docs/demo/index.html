@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SoundCue sound lab</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #05090b; color: #d7ecee; font-family: "Cascadia Code", Consolas, monospace; height: 100%; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+  h1 { letter-spacing: 0.35em; font-size: 26px; text-shadow: 0 0 10px rgba(127,179,186,0.5); margin: 0 0 6px; }
+  .sub { color: #5c757a; font-size: 12px; letter-spacing: 0.15em; margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .slot { background: #070d10; border: 1px solid rgba(170,200,205,0.22); padding: 14px 10px; text-align: center; cursor: pointer; transition: border-color .15s, transform .05s; }
+  .slot:hover { border-color: rgba(170,200,205,0.5); }
+  .slot:active { transform: scale(0.97); border-color: #7fb3ba; }
+  .slot .name { font-size: 10px; letter-spacing: 0.22em; color: #5c757a; text-transform: uppercase; }
+  .slot .glyph { font-size: 20px; color: #7fb3ba; margin-bottom: 8px; }
+  .terminal { margin-top: 30px; border: 1px solid rgba(170,200,205,0.22); background: #070d10; padding: 16px; font-size: 12px; line-height: 1.8; color: #a9c6ca; height: 150px; overflow: hidden; }
+  .terminal .line { color: #7fb3ba; }
+  .note { margin-top: 14px; color: #46585c; font-size: 10px; letter-spacing: 0.2em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SOUNDCUE LAB</h1>
+  <div class="sub">CLICK ANY SLOT — EVERY SOUND IS SYNTHESIZED FROM JSON, NO AUDIO FILES</div>
+  <div class="grid" id="grid"></div>
+  <div class="terminal" id="term"></div>
+  <div class="note">TYPING BELOW FIRES THE "TYPETICK" SLOT AT KEYBOARD RATE (THROTTLE 40MS)</div>
+</div>
+<script type="module">
+  import { createSoundcue, DEFAULT_CONFIG } from "./core.js";
+  const cue = createSoundcue();
+  const unlock = () => cue.unlock();
+  window.addEventListener("pointerdown", unlock, { once: true });
+  window.addEventListener("keydown", unlock, { once: true });
+
+  const ICONS = { typeTick: "⌨", keyClick: "≡", terminalPrint: "▮", bootBlip: "◔", bootSweep: "∿", bootEngage: "◉", uiClick: "▸", panelExpand: "⇱", taskPass: "✓", taskFail: "✕" };
+  const grid = document.getElementById("grid");
+  const term = document.getElementById("term");
+  for (const slot of Object.keys(DEFAULT_CONFIG.slots)) {
+    const el = document.createElement("div");
+    el.className = "slot";
+    el.innerHTML = `<div class="glyph">${ICONS[slot] ?? "●"}</div><div class="name">${slot}</div>`;
+    el.addEventListener("click", () => {
+      cue.play(slot);
+      term.insertAdjacentHTML("beforeend", `<div class="line">▸ play("${slot}")</div>`);
+      term.scrollTop = term.scrollHeight;
+    });
+    grid.appendChild(el);
+  }
+  window.addEventListener("keydown", (e) => {
+    if (e.key.length === 1) {
+      cue.play("typeTick");
+      term.insertAdjacentHTML("beforeend", `<div>key "${e.key}" → typeTick</div>`);
+      term.scrollTop = term.scrollHeight;
+    }
+  });
+</script>
+</body>
+</html>
