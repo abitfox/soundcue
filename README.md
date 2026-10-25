@@ -103,6 +103,8 @@ Extracted from the HackerEnglish project, where it drives the whole
 workstation soundscape (boot sequence, mechanical keyboard, terminal, task
 feedback). See [`docs/PORTING.md`](./docs/PORTING.md).
 
+The workstation at [www.hackerenglish.com](https://www.hackerenglish.com) runs this engine live — the boot sequence, mechanical keyboard, terminal ticks and task feedback you hear there are this library.
+
 ## License
 
 [MIT](./LICENSE).

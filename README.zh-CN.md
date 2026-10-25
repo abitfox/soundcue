@@ -100,6 +100,8 @@ npm install soundcue
 
 抽取自 HackerEnglish 项目——工作站全套音效（开机序列、机械键盘、终端、任务反馈）都由它驱动。见 [`docs/PORTING.md`](./docs/PORTING.md)。
 
+[www.hackerenglish.com](https://www.hackerenglish.com) 上的工作站由本引擎实时驱动——你在那里听到的开机序列、机械键盘、终端音与任务反馈都来自这个库。
+
 ## 许可
 
 [MIT](./LICENSE)。
