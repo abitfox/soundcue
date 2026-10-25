@@ -9,6 +9,8 @@
 
 ---
 
+> ▶ **Live site: [www.hackerenglish.com](https://www.hackerenglish.com)** — every sound in this workstation is synthesized by this engine.
+
 Most UI sound solutions hand you a bag of `.mp3` files or a game-engine-grade
 library. SoundCue takes the other path: **every sound is data**. An oscillator
 burst here, a filtered noise burst there, a throttle for type-rate sounds —
@@ -102,8 +104,6 @@ for the fully documented schema.
 Extracted from the HackerEnglish project, where it drives the whole
 workstation soundscape (boot sequence, mechanical keyboard, terminal, task
 feedback). See [`docs/PORTING.md`](./docs/PORTING.md).
-
-The workstation at [www.hackerenglish.com](https://www.hackerenglish.com) runs this engine live — the boot sequence, mechanical keyboard, terminal ticks and task feedback you hear there are this library.
 
 ## License
 

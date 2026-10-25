@@ -13,6 +13,8 @@
 
 ---
 
+> ▶ **在线演示：[www.hackerenglish.com](https://www.hackerenglish.com)** —— 工作站里的每个音效都由本引擎实时合成。
+
 市面上的 UI 音效方案，要么丢给你一堆 `.mp3`，要么是游戏引擎级的重型库。SoundCue 走另一条路：**声音即数据**。这里一个振荡器脉冲、那里一段滤波噪声，高频场景加节流——全部用 JSON 描述，实时合成，通过命名槽位（`typeTick`、`keyClick`、`uiClick`……）在运行时重新映射。
 <div align="center">
   <img src="docs/media/demo.png" alt="SoundCue 音效试验台" width="820" />
@@ -99,8 +101,6 @@ npm install soundcue
 ## 来源
 
 抽取自 HackerEnglish 项目——工作站全套音效（开机序列、机械键盘、终端、任务反馈）都由它驱动。见 [`docs/PORTING.md`](./docs/PORTING.md)。
-
-[www.hackerenglish.com](https://www.hackerenglish.com) 上的工作站由本引擎实时驱动——你在那里听到的开机序列、机械键盘、终端音与任务反馈都来自这个库。
 
 ## 许可
 
